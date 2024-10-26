@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS rules (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-Installation
+## Installation
 1- Clone the repository:
 git clone https://github.com/your_username/rule_engine_with_ast.git](https://github.com/neerajkumar458/RuleEngineAST.git
 2- Install required dependencies:
