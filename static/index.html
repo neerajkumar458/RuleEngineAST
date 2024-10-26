@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rule Engine</title>
+        <link rel="stylesheet" href="styles.css">  <!-- Link to the CSS file -->
+    </head>
+    
+<body>
+    <h1>Rule Engine</h1>
+    <h2>Create a Rule</h2>
+    <input type="text" id="ruleInput" placeholder="Enter a rule">
+    <button onclick="createRule()">Add Rule</button>
+    <h2>Modify a Rule</h2>
+    <input type="number" id="modifyIndex" placeholder="Rule Index">
+    <input type="text" id="newRuleInput" placeholder="New Rule">
+    <button onclick="modifyRule()">Modify Rule</button>
+    <h2>Evaluate Rules</h2>
+    <textarea id="dataInput" placeholder="Enter JSON data"></textarea>
+    <button onclick="evaluateRules()">Evaluate</button>
+
+    <script>
+        async function createRule() {
+            const rule = document.getElementById('ruleInput').value;
+            const response = await fetch('/create_rule', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ rule })
+            });
+            const result = await response.json();
+            alert(JSON.stringify(result));
+        }
+
+        async function modifyRule() {
+            const index = document.getElementById('modifyIndex').value;
+            const newRule = document.getElementById('newRuleInput').value;
+            const response = await fetch('/modify_rule', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ index: parseInt(index), rule: newRule })
+            });
+            const result = await response.json();
+            alert(JSON.stringify(result));
+        }
+
+        async function evaluateRules() {
+            const data = document.getElementById('dataInput').value;
+            const response = await fetch('/evaluate_rules', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ rules: ["(age > 30 AND department = 'Sales')"], data: JSON.parse(data) })
+            });
+            const result = await response.json();
+            alert(JSON.stringify(result));
+        }
+    </script>
+</body>
+</html>
