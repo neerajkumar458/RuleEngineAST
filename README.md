@@ -35,3 +35,16 @@ CREATE TABLE IF NOT EXISTS rules (
     rule_string TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+Installation
+1- Clone the repository:
+git clone https://github.com/your_username/rule_engine_with_ast.git](https://github.com/neerajkumar458/RuleEngineAST.git
+2- Install required dependencies:
+pip install Flask mysql-connector-python
+3-Set up your MySQL database:
+Update the database connection details in database.py.
+Run the script to create the required table.
+4-Start the Flask application:
+python app.py
+
+
